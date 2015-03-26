@@ -5,7 +5,7 @@
  */
 package com.rafaeloga.colas;
 
-import com.rafaeloga.exceptions.DesbordamientoInferior;
+import com.rafaeloga.exceptions.*;
 import com.rafaeloga.model.Reserve;
 
 /**
@@ -16,46 +16,58 @@ public class ColaVector implements ICola{
     
     /**Vector que contiene las reservas**/
     @SuppressWarnings("FieldMayBeFinal")
-    private Reserve reservas[];
+    private Reserve reserves[];
     /**Posicion del primer elemento de la cola**/
-    int inicio;
+    int first;
     /**Posicion del ultimo elemento de la cola**/
-    int fin;
+    int end;
     /** Numero de elementos que contiene la cola**/
     @SuppressWarnings("FieldMayBeFinal")
-    private int numElementos;
+    private int numElements;
     /** Constructor de la clase. Crea una cola vacia con el tamaño indicado en
-     *  en el parametr
+     *  en el parametro tam
      * @param tam**/
     public ColaVector(int tam){
-        reservas = new Reserve[tam];
-        inicio = 0;
-        fin = -1;
-        numElementos = 0;        
+        reserves = new Reserve[tam];
+        first = 0;
+        end = -1;
+        numElements = 0;        
     }   
     
     @Override
-    public void inserta(Reserve reserve) {
+    public void insert(Reserve reserve) throws DesbordamientoSuperior{
        //Se comprueba si esta llena la cola
-        if(numElementos == reservas.length){
-            
+        if(numElements == reserves.length){
+            throw new DesbordamientoSuperior("The queue is full. You can'r realize the insert operation");
         
         }
+        //We increment de variables and assign the reserve to the vector in end position
+        end++;
+        reserves[end] = reserve;
+        numElements++;
     }
 
     @Override
-    public Reserve primero() throws DesbordamientoInferior {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Reserve first() throws DesbordamientoInferior {
+        //It's checked if the queue is empty
+        if(isEmpty()){
+            throw new DesbordamientoInferior("The queue is empty and there isn't any elements");
+        }
+        return reserves[first];
     }
 
     @Override
-    public void quitarPrimero() throws DesbordamientoInferior {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void quitFirst() throws DesbordamientoInferior {
+        if(isEmpty()){
+            throw new DesbordamientoInferior("The queue is empty and there isn't any elements");
+        }
+        first++;
+        numElements--;
     }
 
     @Override
-    public boolean esVacia() {
-        return (numElementos==0);
+    public boolean isEmpty() {
+        return (numElements==0);
     }
     
 }

@@ -13,16 +13,17 @@ import com.rafaeloga.model.Reserve;
  */
 public interface ICola {
     /** Inserta un elemento al final de la cola
-     * @param reserve **/
-    public void inserta(Reserve reserve) throws DesbordamientoSuperior;
+     * @param reserve
+     * @throws com.rafaeloga.exceptions.DesbordamientoSuperior **/
+    public void insert(Reserve reserve) throws DesbordamientoSuperior;
     /** Devuelve el elemento que mas tiempo lleva en la cola
      * @return Reserve
      * @throws com.rafaeloga.exceptions.DesbordamientoInferior **/
-    public Reserve primero() throws DesbordamientoInferior;
+    public Reserve first() throws DesbordamientoInferior;
     /** Elimina el elemnto que lleva mas tiempo en la cola
      * @throws com.rafaeloga.exceptions.DesbordamientoInferior **/
-    public void quitarPrimero() throws DesbordamientoInferior;
+    public void quitFirst() throws DesbordamientoInferior;
     /**Determina si la cola esta vacia
      * @return Boolean  **/
-    public boolean esVacia();  
+    public boolean isEmpty();  
 }
