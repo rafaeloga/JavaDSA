@@ -12,7 +12,7 @@ import com.rafaeloga.model.Reserve;
  *
  * @author rafael.lopez
  */
-public class QueueWithVector implements ICola{
+public class QueueWithVector implements IQueue{
     
     /**Vector que contiene las reservas**/
     @SuppressWarnings("FieldMayBeFinal")

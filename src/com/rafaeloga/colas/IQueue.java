@@ -11,7 +11,7 @@ import com.rafaeloga.model.Reserve;
  * el primero en salir.
  * @author rafael.lopez
  */
-public interface ICola {
+public interface IQueue {
     /** Inserta un elemento al final de la cola
      * @param reserve
      * @throws com.rafaeloga.exceptions.DesbordamientoSuperior **/
