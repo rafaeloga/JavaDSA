@@ -12,7 +12,7 @@ import com.rafaeloga.model.Reserve;
  *
  * @author rafael.lopez
  */
-public class ColaVector implements ICola{
+public class QueueWithVector implements ICola{
     
     /**Vector que contiene las reservas**/
     @SuppressWarnings("FieldMayBeFinal")
@@ -27,7 +27,7 @@ public class ColaVector implements ICola{
     /** Constructor de la clase. Crea una cola vacia con el tamaño indicado en
      *  en el parametro tam
      * @param tam**/
-    public ColaVector(int tam){
+    public QueueWithVector(int tam){
         reserves = new Reserve[tam];
         first = 0;
         end = -1;
