@@ -7,6 +7,7 @@ package com.rafaeloga.colas;
 
 import com.rafaeloga.exceptions.DesbordamientoInferior;
 import com.rafaeloga.exceptions.DesbordamientoSuperior;
+import com.rafaeloga.model.Node;
 import com.rafaeloga.model.Reserve;
 
 /**
@@ -15,24 +16,55 @@ import com.rafaeloga.model.Reserve;
  */
 public class QueueWithList implements IQueue {
 
+    private Node begin;
+    private Node end;
+
+    public QueueWithList() {
+        begin = null;
+        end = null;
+    }
+    
     @Override
     public void insert(Reserve reserve) throws DesbordamientoSuperior {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //A node is created with node=null
+        Node node = new Node(reserve);
+        node.setNode(null);
+        //If the list is empty then the new node is the first and the end
+        if(isEmpty()){
+            begin = node;
+            end = node;            
+        }
+        //Else the last node point the new node and the new node is the last node
+        else{
+            end.setNode(node);
+            end = node;
+        }
     }
 
     @Override
     public Reserve first() throws DesbordamientoInferior {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw  new DesbordamientoInferior("The queue is empty and there isn't firt element");
+        }
+        return begin.getReserve();
     }
 
     @Override
     public void quitFirst() throws DesbordamientoInferior {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            throw new DesbordamientoInferior("The queue is empty and there isn't firt element");
+        }
+        begin = begin.getNode();
+        
+        if(begin==null){
+            end = null;
+        }
+        
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (begin == null);
     }
     
 }
