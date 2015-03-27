@@ -36,7 +36,8 @@ public class AEC1Colas extends JFrame implements ActionListener{
     
     @SuppressWarnings("LeakingThisInConstructor")
     public AEC1Colas (){
-        setLayout(null);
+        GridLayout gl = new GridLayout(0,2);
+        setLayout(gl);
          mb=new JMenuBar();
         setJMenuBar(mb);
         menu1=new JMenu("Cargar Datos Prueba");
@@ -47,6 +48,11 @@ public class AEC1Colas extends JFrame implements ActionListener{
         mi2=new JMenuItem("Cargar Cola con lista enlazada");
         mi2.addActionListener(this);
         menu1.add(mi2);
+        
+        add(new JButton("Boton1"));
+        add(new JButton("Boton2"));
+        add(new JButton("Boton1"));
+        add(new JButton("Boton2"));
         
     }
     @Override
@@ -65,7 +71,17 @@ public class AEC1Colas extends JFrame implements ActionListener{
             genUIVector();
         }
         if (e.getSource()==mi2) {
-            f.setBackground(new Color(0,255,0));
+            queueList = new QueueWithList();
+            
+            for(int i = 0; i<queueLenght; i++){
+                Reserve reserve = new Reserve("Name" + i, "Surname " + i, new Destiny("Hotel"+i, "Description"  + i, "Company " + i, "City " + i, "Country " + i));
+                try {
+                    queueList.insert(reserve);
+                } catch (DesbordamientoSuperior ex) {
+                    Logger.getLogger(AEC1Colas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
         }
          
     }
